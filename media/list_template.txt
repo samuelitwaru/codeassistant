@@ -1,0 +1,31 @@
+<h2>{{model.plural|capitalize}}</h2>
+
+<form method="GET" action="{{ '{{ request.build_absolute_uri }}' }}">
+    <input type="text" name="search" placeholder="Search..." value="{{'{{ request.GET.search }}'}}">
+    <button type="submit">Search</button>
+</form>
+
+<form method="GET" action="{{ '{{ request.build_absolute_uri }}' }}">
+
+</form>
+
+
+<table>
+    <thead>
+        <tr>
+            {% for column in model.column_fields() %}
+            <th><a href="?ordering={{column}}">{{column|capitalize}}</a></th>
+            {% endfor %}
+        </tr>
+    </thead>
+    
+    <tbody>
+        {{'{%'}} for {{model.name}} in {{model.plural}} {{'%}'}}
+        <tr>
+            {% for column in model.column_fields() %}
+            <td>{{'{{'}} car.{{column.name}} {{'}}'}}</td>
+            {% endfor %}
+        </tr>
+        {{'{%'}} endfor {{'%}'}}
+    </tbody>
+</table>

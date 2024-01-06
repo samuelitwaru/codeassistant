@@ -1,0 +1,10 @@
+def create_{{model.name}}(request):
+    # Create a new object
+    if request.method == 'POST':
+         create_{{model.name}}_form = {{ model.name|snake_to_camel|capitalize }}Form(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('get_{{model.plural}}')
+    else:
+        form = {{model.name|snake_to_camel|capitalize}}Form()
+    return render(request, '{{model.app}}/create_{{model.name}}.html', {'form': create_{{model.name}}_form})

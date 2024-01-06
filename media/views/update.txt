@@ -1,0 +1,11 @@
+def update_{{model.name}}(request, pk):
+    # Update an existing object
+    obj = get_object_or_404({{model.name|snake_to_camel|capitalize}}, pk=pk)
+    if request.method == 'POST':
+        form = {{model.name|snake_to_camel|capitalize}}Form(request.POST, instance=obj)
+        if form.is_valid():
+            form.save()
+            return redirect('get_{{model.name}}')
+    else:
+        form = {{model.name|snake_to_camel|capitalize}}Form(instance=obj)
+    return render(request, '{{model.app}}/{{model.name}}_form.html', {'form': form})
